@@ -1,12 +1,4 @@
-/* Global Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Default Light Theme */
+/* Light Theme */
 body {
     --bg-color: #ffffff;
     --text-color: #000000;
@@ -55,6 +47,10 @@ body.dark-mode {
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;  /* Move content to the right */
+    padding-right: 20px;
 }
 
 /* Map */

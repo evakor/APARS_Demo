@@ -48,12 +48,10 @@ const themeToggle = document.getElementById("theme-toggle");
 function applyTheme(isDark) {
     if (isDark) {
         document.body.classList.add("dark-mode");
-        themeToggle.checked = true;
         map.removeLayer(currentTileLayer);
         currentTileLayer = darkTileLayer;
     } else {
         document.body.classList.remove("dark-mode");
-        themeToggle.checked = false;
         map.removeLayer(currentTileLayer);
         currentTileLayer = lightTileLayer;
     }
@@ -69,4 +67,15 @@ themeToggle.addEventListener("change", () => {
 
 // Apply saved theme on load
 const savedTheme = localStorage.getItem("theme") === "dark";
+themeToggle.checked = savedTheme;
 applyTheme(savedTheme);
+
+// Function to open the side menu
+function openMenu() {
+    document.getElementById("side-menu").style.width = "250px";
+}
+
+// Function to close the side menu
+function closeMenu() {
+    document.getElementById("side-menu").style.width = "0";
+}
