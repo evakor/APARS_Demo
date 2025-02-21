@@ -39,10 +39,6 @@ body {
     font-weight: bold;
 }
 
-.date-user {
-    font-size: 14px;
-}
-
 /* Side Menu */
 .side-menu {
     height: 100%;
@@ -64,10 +60,6 @@ body {
     display: block;
 }
 
-.side-menu a:hover {
-    background-color: #444;
-}
-
 .close-btn {
     position: absolute;
     top: 10px;
@@ -82,17 +74,4 @@ body {
     width: 100%;
     height: calc(100vh - 60px);
     margin-top: 60px;
-}
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-    .menu-icon {
-        font-size: 20px;
-    }
-    .logo {
-        font-size: 18px;
-    }
-    .date-user {
-        font-size: 12px;
-    }
 }
