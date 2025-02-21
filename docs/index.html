@@ -9,7 +9,7 @@
     <!-- Leaflet Map Styles -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 
-    <!-- Custom Stylesheet -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/style.css">
 
     <!-- Google Fonts -->
@@ -21,9 +21,9 @@
     <!-- PWA Service Worker -->
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
+            navigator.serviceWorker.register('sw.js')
                 .then(reg => console.log('Service Worker Registered!', reg))
-                .catch(err => console.log('Service Worker Registration Failed!', err));
+                .catch(err => console.error('Service Worker Registration Failed!', err));
         }
     </script>
 </head>
@@ -36,7 +36,6 @@
             <span class="menu-icon" onclick="openMenu()">☰</span>
             <div class="logo">APARS</div>
         </div>
-        <div id="datetime" class="date-user"></div>
     </div>
 
     <!-- Side Menu -->
@@ -51,10 +50,25 @@
     <!-- Map Container -->
     <div id="map"></div>
 
+    <!-- Theme Toggle Bar -->
+    <div class="theme-toggle-bar">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+    </div>
+
     <!-- Scripts -->
     <script src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="js/app.js"></script>
+
+    <div class="theme-toggle-bar">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+    </div>
 
 </body>
 
