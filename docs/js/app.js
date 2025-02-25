@@ -75,7 +75,25 @@ function openMenu() {
     document.getElementById("side-menu").style.width = "250px";
 }
 
-// Function to close the side menu
+/* Closes the menu when clicking the close button or anywhere outside the menu */
 function closeMenu() {
     document.getElementById("side-menu").style.width = "0";
 }
+
+// Automatically close menu when a link is clicked
+document.querySelectorAll(".side-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+        closeMenu();
+    });
+});
+
+// Close menu if the user clicks outside of it
+document.addEventListener("click", function(event) {
+    let menu = document.getElementById("side-menu");
+    let menuIcon = document.querySelector(".menu-icon");
+
+    // Check if menu is open and user clicks outside
+    if (menu.style.width === "250px" && !menu.contains(event.target) && !menuIcon.contains(event.target)) {
+        closeMenu();
+    }
+});

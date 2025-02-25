@@ -36,6 +36,17 @@ body.dark-mode {
     z-index: 1000;
 }
 
+/* Import Poppins Font */
+@import url('https://fonts.googleapis.com/css?family=Poppins:wght@400;600&display=swap');
+
+/* Apply Poppins Font to Logo */
+.logo {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    margin-left: 10px;
+}
+
 /* Side Menu */
 .side-menu {
     height: 100%;
@@ -47,10 +58,30 @@ body.dark-mode {
     overflow-x: hidden;
     transition: 0.3s;
     padding-top: 60px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;  /* Move content to the right */
-    padding-right: 20px;
+}
+
+/* Align Menu Items to the Left */
+.side-menu a {
+    display: block;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    padding: 12px 20px;
+    text-align: left; /* Align text to the left */
+    transition: 0.3s;
+}
+
+.side-menu a:hover {
+    background-color: #cfd8dc; /* Light hover effect */
+}
+
+/* Close Button */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
 }
 
 /* Map */
@@ -114,4 +145,117 @@ input:checked + .slider {
 
 input:checked + .slider::before {
     transform: translateX(24px);
+}
+
+/* Responsive Images */
+.responsive-img {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    display: block;
+    margin: 10px auto;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Mobile Responsive Layout */
+@media screen and (max-width: 768px) {
+    .content {
+        padding: 15px;
+        margin-top: 70px;
+    }
+
+    .content h1, .content h2 {
+        font-size: 22px;
+    }
+
+    .content p {
+        font-size: 16px;
+    }
+
+    .responsive-img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+    }
+
+    .menu-icon {
+        font-size: 22px;
+    }
+
+    .side-menu {
+        width: 80%;
+    }
+
+    .side-menu a {
+        font-size: 16px;
+        padding: 12px 15px;
+    }
+
+    .theme-toggle-bar {
+        bottom: 10px;
+        right: 10px;
+    }
+}
+
+
+
+
+/* For the connection to the apars system */
+
+/* Center Subscription Box */
+.subscription-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Popup Box */
+.popup-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 300px;
+}
+
+/* Subscription Buttons */
+.popup-box button {
+    margin: 10px 5px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* OK Button */
+.popup-box button:nth-child(3) {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Cancel Button */
+.popup-box button:nth-child(4) {
+    background-color: red;
+    color: white;
+}
+
+/* Notification */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: block;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none;
 }

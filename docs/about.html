@@ -1,12 +1,104 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>APARS - About</title>
+
+    <!-- Leaflet Map Styles -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Poppins' rel='stylesheet'>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- PWA Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('Service Worker Registered!', reg))
+                .catch(err => console.error('Service Worker Registration Failed!', err));
+        }
+    </script>
+
     
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="menu-logo">
+            <span class="menu-icon" onclick="openMenu()">☰</span>
+            <span class="logo">APARS</span>
+        </div>
+    </div>
+
+    <!-- Side Menu -->
+    <div id="side-menu" class="side-menu">
+        <a href="javascript:void(0)" class="close-btn" onclick="closeMenu()">×</a>
+        <a href="index.html">Home</a>
+        <a href="connectToKit.html">Connect to APARS Kit</a>
+        <a href="about.html">About Us</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <h1>About APARS</h1>
+        <p>An IoT system using vehicle-mounted sensors to monitor air quality in real-time. The system integrates GPS data and pollution levels to provide drivers with actionable insights about their environment. The key features include real-time notifications, data logging, and a mobile dashboard for visualization. This system is designed for eco-conscious drivers aiming for smart and sustainable mobility.</p>
+        
+        <h2>Project Architecture</h2>
+        <p>The architecture of the APARS system is built on a combination of embedded IoT hardware and cloud-based data processing. The vehicle-mounted sensors collect air quality data, which is then processed using edge computing before being transmitted to a cloud platform via MQTT. The data is stored in a central repository, where it is analyzed and made available to users through a web and mobile interface.</p>
+        <img src="architecture.jpg" alt="Project Architecture" class="responsive-img">
+        
+        <h2>Wiring Diagram</h2>
+        <p>The system incorporates multiple sensors to monitor various air quality parameters. These include the MQ-2, MQ-7, and MQ-135 sensors for detecting gases like CO, CO2, and VOCs. The SCD30 and SGP30 sensors measure CO2 levels and volatile organic compounds (TVOCs). Additionally, a BME280 sensor is used to collect environmental data such as temperature, humidity, and pressure. The wiring layout connects these sensors to a Raspberry Pi, with an I2C communication protocol ensuring efficient data transfer.</p>
+        <img src="sensor_wiring.jpg" alt="Sensor Wiring" class="responsive-img">
+    </div>
+
+    <!-- Theme Toggle Bar -->
+    <!-- <div class="theme-toggle-bar">
+        <label class="switch">
+            <input type="checkbox" id="theme-toggle">
+            <span class="slider round"></span>
+        </label>
+    </div> -->
+
+    <!-- Scripts -->
+    <script src="./js/app.js"></script>
+    <script>
+        function openMenu() {
+            document.getElementById("side-menu").style.width = "250px";
+        }
+
+        function closeMenu() {
+            document.getElementById("side-menu").style.width = "0";
+        }
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById("theme-toggle");
+
+        function applyTheme(isDark) {
+            document.body.classList.toggle("dark-mode", isDark);
+            localStorage.setItem("theme", isDark ? "dark" : "light");
+        }
+
+        themeToggle.addEventListener("change", () => {
+            applyTheme(themeToggle.checked);
+        });
+
+        // Apply saved theme on load
+        const savedTheme = localStorage.getItem("theme") === "dark";
+        themeToggle.checked = savedTheme;
+        applyTheme(savedTheme);
+    </script>
+
 </body>
+
 </html>
