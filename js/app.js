@@ -1,7 +1,7 @@
 // Initialize MQTT Connection with persistent session and explicit clientId
 const client = mqtt.connect('wss://labserver.sense-campus.gr:9002', {
   clean: false,
-  clientId: 'apars_' + Math.random().toString(16).substr(2, 8)
+  clientId: 'apars_' + Date.now()
 });
 const topic = "image";
 
@@ -23,7 +23,7 @@ currentTileLayer.addTo(map);
 
 let currentOverlay = null;
 
-// Check if a previously received image is saved and load it
+// Load any previously saved image overlay
 const savedImage = localStorage.getItem("latestImage");
 if (savedImage) {
   currentOverlay = L.imageOverlay(savedImage, [[38.205683, 21.708846], [38.294508, 21.830913]], {
@@ -31,7 +31,7 @@ if (savedImage) {
   }).addTo(map);
 }
 
-// Connect to MQTT and subscribe with QoS 1 to get any retained/queued message
+// Connect to MQTT and subscribe with QoS 1 for retained/queued messages
 client.on('connect', function () {
   console.log('Connected to MQTT');
   client.subscribe(topic, { qos: 1 }, function (err) {
