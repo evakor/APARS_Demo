@@ -89,7 +89,7 @@
                 console.log('Connected to MQTT');
 
                 // Subscribe to "apars/car" topic
-                client.subscribe('apars/car', function (err) {
+                client.subscribe('apars_cars', function (err) {
                     if (!err) {
                         console.log("Successfully subscribed to APARS system (apars/car)");
                         showNotification("You have successfully subscribed your kit to the APARS system!", true);
