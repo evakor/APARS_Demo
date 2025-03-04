@@ -1,5 +1,8 @@
-// Initialize MQTT Connection with persistent session
-const client = mqtt.connect('wss://labserver.sense-campus.gr:9002', { clean: false });
+// Initialize MQTT Connection with persistent session and explicit clientId
+const client = mqtt.connect('wss://labserver.sense-campus.gr:9002', {
+  clean: false,
+  clientId: 'apars_' + Math.random().toString(16).substr(2, 8)
+});
 const topic = "image";
 
 // Map Tile Layers
@@ -28,10 +31,14 @@ if (savedImage) {
   }).addTo(map);
 }
 
-// Connect to MQTT and subscribe with QoS 1 to ensure delivery of retained messages
+// Connect to MQTT and subscribe with QoS 1 to get any retained/queued message
 client.on('connect', function () {
   console.log('Connected to MQTT');
-  client.subscribe(topic, { qos: 1 });
+  client.subscribe(topic, { qos: 1 }, function (err) {
+    if (err) {
+      console.error("Subscription error:", err);
+    }
+  });
 });
 
 client.on('message', function (topic, message) {
@@ -40,7 +47,6 @@ client.on('message', function (topic, message) {
   const imageUrl = `data:image/png;base64,${base64Image}`;
   localStorage.setItem("latestImage", imageUrl);
 
-  // Remove previous overlay if it exists and add the new one
   if (currentOverlay) {
     map.removeLayer(currentOverlay);
   }
