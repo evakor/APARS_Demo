@@ -33,6 +33,7 @@ if (savedImage) {
 
 // Connect to MQTT and subscribe with QoS 1 for retained/queued messages
 client.on('connect', function () {
+<<<<<<< Updated upstream
   console.log('Connected to MQTT');
   client.subscribe(topic, { qos: 1 }, function (err) {
     if (err) {
@@ -46,6 +47,21 @@ client.on('message', function (topic, message) {
   const base64Image = message.toString();
   const imageUrl = `data:image/png;base64,${base64Image}`;
   localStorage.setItem("latestImage", imageUrl);
+=======
+    console.log('Connected to MQTT');
+    client.subscribe(topic);
+    // console.log('Connected to MQTT 2');
+});
+
+client.on('message', function (topic, message) {
+    console.log("Before receiving image");
+    console.log('Received MQTT Image');
+    const base64Image = message.toString();
+    console.log("Base64 String:", base64Image.substring(0, 100)); // Print first 100 chars to verify data
+
+    const imageUrl = `data:image/png;base64,${base64Image}`;
+    localStorage.setItem("latestImage", imageUrl);
+>>>>>>> Stashed changes
 
   if (currentOverlay) {
     map.removeLayer(currentOverlay);
